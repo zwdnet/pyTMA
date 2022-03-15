@@ -8,21 +8,8 @@ import math
 from PIL import Image
 import numpy as np
 import random
-
-
-def GR(i, j):
-    # return math.cos(math.atan2(j-512,i-512)/2-2*math.acos(-1)/3)*255
-    return random.randint(0, 256)
-    
-    
-def BL(i, j):
-    # return math.cos(math.atan2(j-512,i-512)/2+2*math.acos(-1)/3)*255
-    return random.randint(0, 256)
-    
-    
-def RD(i, j):
-    # return math.cos(math.atan2(j-512,i-512)/2)*255
-    return random.randint(0, 256)
+from solution import *
+from tqdm import tqdm
 
 
 # 画图程序，在指定坐标处画点
@@ -39,20 +26,22 @@ def main():
     DIM = 1024
     plt.figure()
     data = []
-    for i in range(DIM):
+    print("正在绘图")
+    for i in tqdm(range(DIM)):
         row = []
         for j in range(DIM):
-            print(i, j)
-            r = RD(i, j)%255
-            g = GR(i, j)%255
-            b = BL(i, j)%255
+            # print(i, j)
+            r = RD(i, j, DIM = DIM)%255
+            g = GR(i, j, DIM = DIM)%255
+            b = BL(i, j, DIM = DIM)%255
             c = (r, g, b)
             # print(c)
             row.append(c)
         data.append(row)
         # del(row)
-    pixel_write(data)
+    pixel_write(data, filename = "ans1.jpg")
     plt.close()
+    print("绘图完成")
 
 
 if __name__ == "__main__":
