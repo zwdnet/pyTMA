@@ -22,7 +22,7 @@ def pixel_write(data, filename = "result.jpg"):
     
     
 # 主程序
-def main():
+def main(filename = "result.jpg"):
     DIM = 1024
     plt.figure()
     data = []
@@ -31,18 +31,18 @@ def main():
         row = []
         for j in range(DIM):
             # print(i, j)
-            r = RD(i, j, DIM = DIM)%255
-            g = GR(i, j, DIM = DIM)%255
-            b = BL(i, j, DIM = DIM)%255
+            r = RD(i, j, DIM = DIM)%256
+            g = GR(i, j, DIM = DIM)%256
+            b = BL(i, j, DIM = DIM)%256
             c = (r, g, b)
             # print(c)
             row.append(c)
         data.append(row)
         # del(row)
-    pixel_write(data, filename = "ans1.jpg")
+    pixel_write(data, filename = filename)
     plt.close()
     print("绘图完成")
 
 
 if __name__ == "__main__":
-    main()
+    main(filename = "ans8.jpg")
